@@ -25,7 +25,7 @@ public class UserController {
 
 
     @GetMapping("/getBooks")
-    public ResponseEntity<Set<Book>> listBooks(Principal principal) {
+    public ResponseEntity<Set<Book>> getAllBooks(Principal principal) {
 
         Optional<User> user =  userRepo.findByUsername(principal.getName());
         Set<Book> list;
@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/getBooks/{bookId}")
-    public ResponseEntity<?> getBook(@PathVariable String bookId) {
+    public ResponseEntity<?> getBookById(@PathVariable String bookId) {
         Optional<Book> book = bookRepo.findById(bookId);
         if (book.isEmpty()) {
             return (ResponseEntity<?>) ResponseEntity.badRequest();
